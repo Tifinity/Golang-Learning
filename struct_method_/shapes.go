@@ -1,16 +1,36 @@
 package shape
 
-type Rect struct {
-	width  float64
+import (
+	"math"
+)
+
+type Shape interface {
+    Area() float64
+    Perimeter() float64
+}
+
+type Rectangle struct {
+	width float64
 	height float64
 }
 
-// Permeter is p
-func Perimeter(rect Rect) float64 {
-	return 2 * (rect.width + rect.height)
+// Rectangle 的方法 Area
+func (r Rectangle) Area() float64 {
+    return r.width * r.height
 }
 
-// Area is a
-func Area(rect Rect) float64 {
-	return rect.width * rect.height
+func (r Rectangle) Perimeter() float64 {
+    return 2 * (r.width + r.height)
+}
+
+type Circle struct {
+	radius float64
+}
+
+func (c Circle) Area() float64 {
+    return math.Pi * c.radius * c.radius
+}
+
+func (c Circle) Perimeter() float64 {
+    return 2 * math.Pi * c.radius
 }
